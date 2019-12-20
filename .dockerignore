@@ -1,8 +1,0 @@
-.git
-/unused/*
-Dockerfile
-*.yml
-*.yaml
-.DS_Store
-.gitignore
-README.md
