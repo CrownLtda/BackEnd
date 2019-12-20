@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 asgiref==3.2.3
 Django==3.0
 django-cors-headers==3.2.0
@@ -8,4 +9,11 @@ Markdown==3.1.1
 Pillow==6.2.1
 pytz==2019.3
 six==1.13.0
+=======
+Django==2.2.8
+django-cors-headers==3.2.0
+djangorestframework==3.10.3
+Pillow==6.2.1
+pytz==2019.3
+>>>>>>> 350f77e9ff1487f7a733125760ba1ad1f710e914
 sqlparse==0.3.0
