@@ -1,0 +1,70 @@
+{% extends "users/base.html"%}
+
+{% block head_content %}
+<title>Crown Ltda Inicio de Sesión</title>
+{% endblock %}
+{% block card_title %}
+<a href=""><b>Iniciar </b>Sesi&oacute;n</a>
+{% endblock%}
+    
+{% block container %}
+
+    <form method="POST" action="{% url "login" %}">
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+          <input class="form-control" type="text" placeholder="Usuario" name="username" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user-circle"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input class="form-control" type="password" placeholder="Contraseña" name="password" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Recuerdame
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+{% endblock %}
+
+
+{% block card %}
+
+    {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+
+      <p class="mb-1">
+        <a href="/">¿Olvidaste tu contrase&ntilde;a?</a>
+      </p>
+      
+      <p class="mb-0">
+      ¿Nuevo en Crown?
+        <a href="signup" class="text-center">Reg&iacute;strate</a>
+      </p>
+
+{% endblock%}

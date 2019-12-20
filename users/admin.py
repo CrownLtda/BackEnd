@@ -1,10 +1,30 @@
 from django.contrib import admin
 from users.models import Profile
 from users.models import Agencia
+from users.models import Empresa
 
 # Register your models here.
 """Forma basica de poner la aplicacion al Admin"""
 # admin.site.register(Profile)
+
+
+
+@admin.register(Empresa)
+class EmpresaAdmin (admin.ModelAdmin):
+    fieldsets = (
+
+        ('Informacion General', { 
+            "fields": (
+            ('codigo','nombre'),
+            ('descripcion','logo'),
+            )
+        }),
+    )
+    """Campos de Solo Lectura"""
+    readonly_fields = ('created','modified')
+
+
+
 
 
 @admin.register(Agencia)

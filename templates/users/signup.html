@@ -1,0 +1,112 @@
+{% extends "users/base.html" %}
+
+{% block head_content %}
+<title>Crown Ltda Registro</title>
+{% endblock %}
+
+{% block card_title %}
+<a href=""><b>Registro </b>Nuevo Usuario</a>
+{% endblock%}
+
+
+{% block container %}
+
+
+
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user-circle"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Contraseña" name="passwd" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Confirmacion Contraseña" name="passwd_confirmation" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Primer Nombre" name="first_name" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user-edit"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Primer Apellido" name="last_name" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user-edit"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Correo Electronico" name="email" required="true" />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               Acepto los  <a href="#">terminos.</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+
+    </form>
+
+{% endblock %}
+
+
+
+
+{% block card %}
+
+    {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+      <p class="mb-1">
+         <a href="login" class="text-center">Ya tengo una cuenta.</a>
+      </p>
+      
+
+{% endblock%}

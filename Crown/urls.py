@@ -18,6 +18,9 @@ from django.urls import path, include
 from Crown import views as local_views
 from posts import views as posts_views
 
+#librerias para la ruta estatica y muestra de imagenes
+from django.conf import settings
+from django.conf.urls.static import static
 
 #importacion para rest framework
 from rest_framework import routers
@@ -34,12 +37,25 @@ router.register(r'groupsAPI', user_views.GroupViewSet)
 # Additionally, we include login URLs for the browsable API..
 
 urlpatterns = [
-    path('', include(router.urls)),
+
+    #ROUTER PARA API REST
+    #path('', include(router.urls)),
+    path('', user_views.home, name = 'home'),
     path ('hello_world', local_views.hello_world),
     path ('hi', local_views.hi),
     path ('posts/', posts_views.list_posts),
 
 
+    #URLs correspondientes al logueo
+    path('users/login', user_views.login_view, name = 'login'),
+    path('users/logout', user_views.logout_view, name = 'logout'),
+    path('users/signup', user_views.signup, name = 'signup'),
+    
+    #URL temporal para el home
+    path('home', user_views.home, name = 'home'),
+    path('profile', user_views.profile, name = 'profile'),
+
 
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

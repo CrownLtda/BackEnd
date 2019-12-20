@@ -1,8 +1,38 @@
+""" CREACION DE MODELOS
+        AGENCIA
+        PROFILE
+ """
+
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-# Create your models here.
+#django-countries 5.5 A Django application that provides country choices for use with forms.
+from django_countries.fields import CountryField
+
+
+class Empresa (models.Model):
+    """
+    Informacion General
+    """
+    #codigo unico de la empresa, automatizado en FRONT END
+    codigo = models.CharField(max_length=6,primary_key=True,blank = False,help_text="El codigo de la empresa debe contener 6 digitos Ejemplo: LPZ001",unique = True)
+    nombre = models.CharField(max_length=50,blank=False,unique = True)
+    descripcion = models.TextField (max_length= 100, blank = True)
+    logo = models.ImageField(
+        upload_to='users/logo', 
+        blank=True, 
+        null=True
+    )
+
+    """
+    Informacion de Creacion Solo Lectura
+    """
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return (self.nombre)
 
 
 class Agencia (models.Model):
@@ -10,12 +40,8 @@ class Agencia (models.Model):
     """
     Informacion General
     """
-    EMPRESAS= (
-    ('CROWN','Crown'),
-    ('TOYOSA', 'Toyosa'),
-    ('TOYOTA', 'Toyota')
-    )
-    empresa = models.CharField(max_length=30,blank=False, choices= EMPRESAS)
+    #Many-to-one relationship
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     codigo = models.CharField(max_length=6,primary_key=True,blank = False,help_text="El codigo de la agencia debe contener 6 digitos Ejemplo: LPZ001",unique = True)
     nombre = models.CharField(max_length=50,blank=False,unique = True)
     descripcion = models.CharField (max_length= 100, blank = True)
@@ -28,13 +54,7 @@ class Agencia (models.Model):
     """
     Direccion
     """
-    PAISES= (
-    ('BOLIVIA','Bolivia'),
-    ('CHILE', 'Chile'),
-    ('CUBA', 'Cuba'),
-    ('EEUU', 'Estados Unidos')
-    )
-    pais = models.CharField(max_length=30,blank=False, choices= PAISES)
+    pais = CountryField()
     CIUDADES= (
     ('LAPAZ','La Paz'),
     ('SANTACRUZ','Santa Cruz'),
@@ -64,7 +84,7 @@ class Agencia (models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre
+        return "%s %s" % (self.nombre, self.ciudad)
 
 
 
