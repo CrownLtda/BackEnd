@@ -5,5 +5,5 @@ django-countries==5.5
 django-filter==2.2.0
 djangorestframework==3.11.0
 Markdown==3.1.1
-Pillow==6.2.1
+Pillow==9.0.1
 sqlparse==0.3.0
